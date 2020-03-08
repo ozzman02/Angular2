@@ -3,6 +3,7 @@ import {PeliculasListComponent} from "./components/peliculas-list.component";
 import {PeliculasFooterComponent} from "./components/peliculas-footer.component";
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from "angular2/router";
 import { ContactoComponent } from "./components/contacto.component";
+import { CrearPeliculaComponent } from "./components/crear-pelicula.component";
 
 @Component({
     selector: "mi-app",
@@ -11,6 +12,7 @@ import { ContactoComponent } from "./components/contacto.component";
         PeliculasListComponent, 
         PeliculasFooterComponent,
         ContactoComponent,
+        CrearPeliculaComponent,
         ROUTER_DIRECTIVES
     ]
     //styleUrls: ["../assets/css/styles.css"]
@@ -18,6 +20,7 @@ import { ContactoComponent } from "./components/contacto.component";
 
 @RouteConfig([
     {path: "/peliculas", name: "Peliculas", component: PeliculasListComponent, useAsDefault: true},
+    {path: "/crear-pelicula", name: "CrearPelicula", component: CrearPeliculaComponent}
     {path: "/contacto", name: "Contacto", component: ContactoComponent}
 ])
 

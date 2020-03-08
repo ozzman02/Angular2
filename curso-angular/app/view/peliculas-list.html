@@ -16,7 +16,7 @@
     <ul *ngFor = "#pelicula of peliculas" style = "margin-bottom: 20px;">
         <li 
             (click) = "onCambiarPelicula(pelicula)"
-            class = "pelicula-title" [class.clicked] = "peliculaElegida.id === pelicula.id">
+            class = "pelicula-title" [class.clicked] = "peliculaElegida.titulo === pelicula.titulo">
             Titulo: <strong>{{pelicula.titulo}}</strong>
         </li>
         <li>Director: <strong>{{pelicula.director}}</strong></li>
