@@ -1,4 +1,4 @@
-System.register(["angular2/core", "./components/peliculas-list.component", "./components/peliculas-footer.component", "angular2/router", "./components/contacto.component", "./components/crear-pelicula.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "./components/peliculas-list.component", "./components/peliculas-footer.component", "./components/contacto.component", "./components/crear-pelicula.component", "angular2/router"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "./components/peliculas-list.component", "./co
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, peliculas_list_component_1, peliculas_footer_component_1, router_1, contacto_component_1, crear_pelicula_component_1;
+    var core_1, peliculas_list_component_1, peliculas_footer_component_1, contacto_component_1, crear_pelicula_component_1, router_1;
     var AppComponent;
     return {
         setters:[
@@ -23,14 +23,14 @@ System.register(["angular2/core", "./components/peliculas-list.component", "./co
             function (peliculas_footer_component_1_1) {
                 peliculas_footer_component_1 = peliculas_footer_component_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
-            },
             function (contacto_component_1_1) {
                 contacto_component_1 = contacto_component_1_1;
             },
             function (crear_pelicula_component_1_1) {
                 crear_pelicula_component_1 = crear_pelicula_component_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -52,6 +52,7 @@ System.register(["angular2/core", "./components/peliculas-list.component", "./co
                     router_1.RouteConfig([
                         { path: "/peliculas", name: "Peliculas", component: peliculas_list_component_1.PeliculasListComponent, useAsDefault: true },
                         { path: "/crear-pelicula", name: "CrearPelicula", component: crear_pelicula_component_1.CrearPeliculaComponent },
+                        { path: "/crear-pelicula/:titulo", name: "CrearPeliculaBasadaEnOtra", component: crear_pelicula_component_1.CrearPeliculaComponent },
                         { path: "/contacto", name: "Contacto", component: contacto_component_1.ContactoComponent }
                     ]), 
                     __metadata('design:paramtypes', [])

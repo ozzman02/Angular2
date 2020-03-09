@@ -21,5 +21,8 @@
         </li>
         <li>Director: <strong>{{pelicula.director}}</strong></li>
         <li *ngIf = "pelicula.anio">Anio: <strong>{{pelicula.anio}}</strong></li>
+        <li><a [routerLink]="['CrearPeliculaBasadaEnOtra', {titulo: pelicula.titulo, 
+            director: pelicula.director, anio: pelicula.anio}]">Añadir pelicula basada en esta</a>
+        </li>
     </ul>
 </ul>

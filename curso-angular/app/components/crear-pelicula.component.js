@@ -28,13 +28,18 @@ System.register(["angular2/core", "../model/pelicula", "../services/peliculas.se
             }],
         execute: function() {
             CrearPeliculaComponent = (function () {
-                function CrearPeliculaComponent(_peliculasService, _router) {
+                function CrearPeliculaComponent(_peliculasService, _router, _routeParams) {
                     this._peliculasService = _peliculasService;
                     this._router = _router;
+                    this._routeParams = _routeParams;
+                    this.tituloPelicula = "";
                 }
-                CrearPeliculaComponent.prototype.onCrearPelicula = function (titulo, director, anio) {
-                    var pelicula = new pelicula_1.Pelicula(77, titulo, director, anio);
-                    this._peliculasService.insertPelicula(pelicula);
+                CrearPeliculaComponent.prototype.ngOnInit = function () {
+                    this.tituloPelicula = this._routeParams.get("titulo");
+                    this.nuevaPelicula = new pelicula_1.Pelicula(0, this._routeParams.get("titulo"), this._routeParams.get("director"), parseInt(this._routeParams.get("anio")));
+                };
+                CrearPeliculaComponent.prototype.onSubmit = function () {
+                    this._peliculasService.insertPelicula(this.nuevaPelicula);
                     this._router.navigate(['Peliculas']);
                 };
                 CrearPeliculaComponent = __decorate([
@@ -42,7 +47,7 @@ System.register(["angular2/core", "../model/pelicula", "../services/peliculas.se
                         templateUrl: "app/view/crear-pelicula.html",
                         providers: [peliculas_service_1.PeliculasService]
                     }), 
-                    __metadata('design:paramtypes', [peliculas_service_1.PeliculasService, router_1.Router])
+                    __metadata('design:paramtypes', [peliculas_service_1.PeliculasService, router_1.Router, router_1.RouteParams])
                 ], CrearPeliculaComponent);
                 return CrearPeliculaComponent;
             }());
