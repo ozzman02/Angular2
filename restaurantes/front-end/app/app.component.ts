@@ -10,5 +10,5 @@ import { ROUTER_DIRECTIVES, RouteConfig, Router } from "angular2/router";
 }) 
 
 export class AppComponent {
-    public titulo:string = "Restaurantes con Angular2";
+    public titulo:string = "Restaurantes";
 }
