@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router"], function(exports_1, context_1) {
+System.register(["angular2/core", "./components/restaurantes-list.component", "angular2/router"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(["angular2/core", "angular2/router"], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, restaurantes_list_component_1, router_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (restaurantes_list_component_1_1) {
+                restaurantes_list_component_1 = restaurantes_list_component_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -30,6 +33,7 @@ System.register(["angular2/core", "angular2/router"], function(exports_1, contex
                         selector: "mi-app",
                         templateUrl: "app/view/home.html",
                         directives: [
+                            restaurantes_list_component_1.RestaurantesListComponent,
                             router_1.ROUTER_DIRECTIVES
                         ]
                     }), 
