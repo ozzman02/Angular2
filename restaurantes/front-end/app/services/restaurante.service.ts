@@ -11,7 +11,7 @@ export class RestauranteService {
 
     getRestaurantes() {
         return this._http
-            .get("http://localhost/slim/restaurantes-api.php/restaurantes")
+            .get("http://localhost:8080/api/v1/restaurantes")
             .map(res => res.json());
     }
 }

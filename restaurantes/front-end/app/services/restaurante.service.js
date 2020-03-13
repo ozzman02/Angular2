@@ -28,7 +28,7 @@ System.register(["angular2/core", "angular2/http", "rxjs/add/operator/map"], fun
                 }
                 RestauranteService.prototype.getRestaurantes = function () {
                     return this._http
-                        .get("http://localhost/slim/restaurantes-api.php/restaurantes")
+                        .get("http://localhost:8080/api/v1/restaurantes")
                         .map(function (res) { return res.json(); });
                 };
                 RestauranteService = __decorate([

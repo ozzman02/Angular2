@@ -28,6 +28,23 @@ System.register(["angular2/core", "../services/restaurante.service"], function(e
                 }
                 RestaurantesListComponent.prototype.ngOnInit = function () {
                     console.log("restaurantes list component cargado");
+                    this.getRestaurantes();
+                };
+                RestaurantesListComponent.prototype.getRestaurantes = function () {
+                    var _this = this;
+                    this._restauranteService.getRestaurantes()
+                        .subscribe(function (result) {
+                        _this.restaurantes = result;
+                        if (result == null) {
+                            console.log("Error en el servidor");
+                        }
+                        console.log(_this.restaurantes);
+                    }, function (error) {
+                        _this.errorMessage = error;
+                        if (_this.errorMessage != null) {
+                            console.log(_this.errorMessage.toString());
+                        }
+                    });
                 };
                 RestaurantesListComponent = __decorate([
                     core_1.Component({
