@@ -6,6 +6,7 @@ import { Restaurante } from "../model/restaurante";
 @Component({
     selector: "restaurantes-list",
     templateUrl: "app/view/restaurantes-list.html",
+    directives: [ROUTER_DIRECTIVES],
     providers: [RestauranteService]
 }) 
 
@@ -13,8 +14,9 @@ export class RestaurantesListComponent implements OnInit {
     
     public titulo:string = "Listado de restaurantes";
     public restaurantes:Restaurante[];
-    public errorMessage;
-    public loading;
+    public errorMessage:any;
+    public loading:any;
+    public status:any;
 
     constructor(private _restauranteService:RestauranteService) {}
 
@@ -27,12 +29,11 @@ export class RestaurantesListComponent implements OnInit {
         this._restauranteService.getRestaurantes()
             .subscribe(
                 result => {
-                    this.restaurantes = result;
-                    if (result == null) {
+                    this.restaurantes = result.data;
+                    this.status = result.status;
+                    if (this.status !== "success") {
                         console.log("Error en el servidor");
                     }
-                    console.log(this.restaurantes);
-                    console.log("restaurantes list component cargado");
                     this.loading = 'hide';
                 }, 
                 error => {

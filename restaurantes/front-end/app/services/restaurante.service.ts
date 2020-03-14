@@ -14,4 +14,10 @@ export class RestauranteService {
             .get("http://localhost:8080/api/v1/restaurantes")
             .map(res => res.json());
     }
+
+    getRestaurante(id:string) {
+        return this._http
+            .get("http://localhost:8080/api/v1/restaurante/"+id)
+            .map(res => res.json());
+    }
 }

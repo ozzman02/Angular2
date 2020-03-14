@@ -1,4 +1,4 @@
-System.register(["angular2/core", "../services/restaurante.service"], function(exports_1, context_1) {
+System.register(["angular2/core", "../services/restaurante.service", "angular2/router"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "../services/restaurante.service"], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, restaurante_service_1;
+    var core_1, restaurante_service_1, router_1;
     var RestaurantesListComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(["angular2/core", "../services/restaurante.service"], function(e
             },
             function (restaurante_service_1_1) {
                 restaurante_service_1 = restaurante_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             RestaurantesListComponent = (function () {
@@ -34,12 +37,11 @@ System.register(["angular2/core", "../services/restaurante.service"], function(e
                     var _this = this;
                     this._restauranteService.getRestaurantes()
                         .subscribe(function (result) {
-                        _this.restaurantes = result;
-                        if (result == null) {
+                        _this.restaurantes = result.data;
+                        _this.status = result.status;
+                        if (_this.status !== "success") {
                             console.log("Error en el servidor");
                         }
-                        console.log(_this.restaurantes);
-                        console.log("restaurantes list component cargado");
                         _this.loading = 'hide';
                     }, function (error) {
                         _this.errorMessage = error;
@@ -52,6 +54,7 @@ System.register(["angular2/core", "../services/restaurante.service"], function(e
                     core_1.Component({
                         selector: "restaurantes-list",
                         templateUrl: "app/view/restaurantes-list.html",
+                        directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [restaurante_service_1.RestauranteService]
                     }), 
                     __metadata('design:paramtypes', [restaurante_service_1.RestauranteService])

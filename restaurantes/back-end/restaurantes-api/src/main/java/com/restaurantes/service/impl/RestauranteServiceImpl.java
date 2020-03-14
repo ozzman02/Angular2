@@ -27,8 +27,13 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Optional<Restaurante> getRestaurante(Integer idRestaurante) {
-		return restauranteRepository.findById(idRestaurante);
+	public Restaurante getRestaurante(Integer idRestaurante)  {
+		Optional<Restaurante> optionalRestaurante = restauranteRepository.findById(idRestaurante); 
+		if(optionalRestaurante.isPresent()) {
+			return optionalRestaurante.get();
+		} else {
+			return null;
+		}
 	}
 
 	@Override

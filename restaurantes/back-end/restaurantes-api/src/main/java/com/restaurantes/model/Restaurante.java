@@ -1,17 +1,10 @@
 package com.restaurantes.model;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Version;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +24,9 @@ public class Restaurante {
 	@Column(name = "nombre")
 	private String nombre;
 	
+	@Column(name = "descripcion")
+	private String descripcion;
+	
 	@Column(name = "direccion")
 	private String direccion;
 	
@@ -39,16 +35,5 @@ public class Restaurante {
 	
 	@Column(name = "precio")
 	private String precio;
-	
-	@CreationTimestamp
-	@Column(name = "fechaDeCreacion")
-	private LocalDateTime fechaDeCreacion;
-	
-	@UpdateTimestamp
-	@Column(name = "fechaDeActualizacion")
-	private LocalDateTime fechaDeActualizacion;
-	
-	@Version
-    private Long version;
 	
 }
