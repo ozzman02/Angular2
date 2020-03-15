@@ -5,13 +5,13 @@ import com.restaurantes.model.Restaurante;
 import lombok.Data;
 
 @Data
-public class SingleResponse {
+public class SuccessfulResponseItem {
 	
 	private String status = "success";
 	
 	private Restaurante data;
 	
-	public SingleResponse(Restaurante data) {
+	public SuccessfulResponseItem(Restaurante data) {
 		this.data = data;
 	}
 	

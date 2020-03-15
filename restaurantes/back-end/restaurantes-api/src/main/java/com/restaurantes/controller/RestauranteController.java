@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.restaurantes.exception.NotFoundException;
 import com.restaurantes.model.Restaurante;
 import com.restaurantes.response.ErrorResponse;
-import com.restaurantes.response.Response;
-import com.restaurantes.response.SingleResponse;
+import com.restaurantes.response.SuccessfulResponseList;
+import com.restaurantes.response.SuccessfulResponseItem;
 import com.restaurantes.service.RestauranteService;
 
 @RestController
@@ -32,20 +33,26 @@ public class RestauranteController {
 	
 	@GetMapping(value = "/restaurantes")
 	public ResponseEntity<?> getRestaurantes() {
-		return new ResponseEntity<>(new Response(restauranteService.getRestaurantes()), HttpStatus.OK);
+		return new ResponseEntity<>(new SuccessfulResponseList(restauranteService.getRestaurantes()), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/restaurantes", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> saveRestaurante(@RequestBody Restaurante restaurante) {
-		return new ResponseEntity<>(new SingleResponse(
+		return new ResponseEntity<>(new SuccessfulResponseItem(
 				restauranteService.saveRestaurante(restaurante)), HttpStatus.CREATED);
+	}
+	
+	@PutMapping(value = "/restaurantes/{id}", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> updateRestaurante(@RequestBody Restaurante restaurante, @PathVariable Integer id) {
+		return new ResponseEntity<>(new SuccessfulResponseItem(
+				restauranteService.updateRestaurante(id, restaurante)), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/restaurante/{id}")
 	public ResponseEntity<?> getRestaurante(@PathVariable Integer id) {
 		Restaurante restaurante = restauranteService.getRestaurante(id);
 		if (restaurante != null) {
-			return new ResponseEntity<>(new SingleResponse(restaurante), HttpStatus.OK);
+			return new ResponseEntity<>(new SuccessfulResponseItem(restaurante), HttpStatus.OK);
 		} else {
 			String message = String.format("El restaurante con id %s no existe", id);
 			return new ResponseEntity<>(new ErrorResponse(new NotFoundException(message)), HttpStatus.OK);

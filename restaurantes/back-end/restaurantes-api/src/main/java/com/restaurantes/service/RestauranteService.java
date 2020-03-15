@@ -13,7 +13,7 @@ public interface RestauranteService {
 	
 	Restaurante saveRestaurante(Restaurante restaurante);
 	
-	Restaurante updateRestaurante(Integer idRestaurante);
+	Restaurante updateRestaurante(Integer idRestaurante, Restaurante restaurante);
 	
 	void deleteRestaurante(Integer idRestaurante);
 	

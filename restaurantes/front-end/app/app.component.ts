@@ -3,6 +3,7 @@ import { RestaurantesListComponent } from "./components/restaurantes-list.compon
 import { RestaurantesDetailComponent } from "./components/restaurantes-detail.component";
 import { ROUTER_DIRECTIVES, RouteConfig, Router } from "angular2/router";
 import { RestauranteAddComponent } from "./components/restaurantes-add.component";
+import { RestauranteEditComponent } from "./components/restaurantes-edit.component";
 
 @Component({
     selector: "mi-app",
@@ -16,7 +17,8 @@ import { RestauranteAddComponent } from "./components/restaurantes-add.component
 @RouteConfig([
     { path: '/', name: "Home", component: RestaurantesListComponent, useAsDefault: true },
     { path: '/restaurante/:id', name: "Restaurante", component: RestaurantesDetailComponent },
-    { path: '/crear-restaurante/', name: "CrearRestaurante", component: RestauranteAddComponent }
+    { path: '/crear-restaurante/', name: "CrearRestaurante", component: RestauranteAddComponent },
+    { path: '/editar-restaurante/:id', name: "EditarRestaurante", component: RestauranteEditComponent }
 ])
 
 export class AppComponent {

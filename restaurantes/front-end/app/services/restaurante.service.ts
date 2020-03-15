@@ -29,4 +29,12 @@ export class RestauranteService {
             .post("http://localhost:8080/api/v1/restaurantes", body, {headers:headers})
             .map(res => res.json());
     }
+
+    editRestaurante(id:string, restaurante:Restaurante) {
+        let body = JSON.stringify(restaurante);
+        let headers = new Headers({"Content-Type":"application/json"});
+        return this._http
+            .put("http://localhost:8080/api/v1/restaurantes/"+id, body, {headers:headers})
+            .map(res => res.json());
+    }
 }

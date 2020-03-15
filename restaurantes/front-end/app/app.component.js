@@ -1,4 +1,4 @@
-System.register(["angular2/core", "./components/restaurantes-list.component", "./components/restaurantes-detail.component", "angular2/router", "./components/restaurantes-add.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "./components/restaurantes-list.component", "./components/restaurantes-detail.component", "angular2/router", "./components/restaurantes-add.component", "./components/restaurantes-edit.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "./components/restaurantes-list.component", ".
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, restaurantes_list_component_1, restaurantes_detail_component_1, router_1, restaurantes_add_component_1;
+    var core_1, restaurantes_list_component_1, restaurantes_detail_component_1, router_1, restaurantes_add_component_1, restaurantes_edit_component_1;
     var AppComponent;
     return {
         setters:[
@@ -28,6 +28,9 @@ System.register(["angular2/core", "./components/restaurantes-list.component", ".
             },
             function (restaurantes_add_component_1_1) {
                 restaurantes_add_component_1 = restaurantes_add_component_1_1;
+            },
+            function (restaurantes_edit_component_1_1) {
+                restaurantes_edit_component_1 = restaurantes_edit_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -46,7 +49,8 @@ System.register(["angular2/core", "./components/restaurantes-list.component", ".
                     router_1.RouteConfig([
                         { path: '/', name: "Home", component: restaurantes_list_component_1.RestaurantesListComponent, useAsDefault: true },
                         { path: '/restaurante/:id', name: "Restaurante", component: restaurantes_detail_component_1.RestaurantesDetailComponent },
-                        { path: '/crear-restaurante/', name: "CrearRestaurante", component: restaurantes_add_component_1.RestauranteAddComponent }
+                        { path: '/crear-restaurante/', name: "CrearRestaurante", component: restaurantes_add_component_1.RestauranteAddComponent },
+                        { path: '/editar-restaurante/:id', name: "EditarRestaurante", component: restaurantes_edit_component_1.RestauranteEditComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

@@ -50,8 +50,12 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Restaurante updateRestaurante(Integer idRestaurante) {
-		return restauranteRepository.save(restauranteRepository.findById(idRestaurante).get());
+	public Restaurante updateRestaurante(Integer idRestaurante, Restaurante restaurante) {
+		Restaurante nuevoRestaurante = restauranteRepository.findById(idRestaurante).get();
+		if (nuevoRestaurante != null) {
+			nuevoRestaurante = restaurante;
+		}
+		return restauranteRepository.save(nuevoRestaurante);
 	}
 
 	@Override

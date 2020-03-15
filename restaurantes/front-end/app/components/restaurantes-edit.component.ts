@@ -2,17 +2,16 @@ import { Component, OnInit } from "angular2/core";
 import { Router, RouteParams } from "angular2/router";
 import { RestauranteService } from "../services/restaurante.service";
 import { Restaurante } from "../model/restaurante";
-import { CONST_EXPR } from "angular2/src/facade/lang";
 
 @Component({
-    selector: "restaurante-add",
+    selector: "restaurante-edit",
     templateUrl: "app/view/restaurante-add.html",
     providers: [RestauranteService]
 })
 
-export class RestauranteAddComponent implements OnInit {
+export class RestauranteEditComponent implements OnInit {
     
-    public titulo:string = "Crear nuevo restaurante";
+    public titulo:string = "Editar restaurante";
     public restaurante:Restaurante;
     public errorMessage:string;
     public status:string;
@@ -24,7 +23,8 @@ export class RestauranteAddComponent implements OnInit {
     ) {}
 
     onSubmit() {
-        this._restauranteService.addRestaurante(this.restaurante)
+        let id = this._routeParams.get("id");
+        this._restauranteService.editRestaurante(id, this.restaurante)
             .subscribe(
                 response => {
                     this.status = response.status;
@@ -39,21 +39,43 @@ export class RestauranteAddComponent implements OnInit {
                     }
                 }
             );
-            this._router.navigate(["Home"]);   
+        this._router.navigate(["Home"]);
     }
-    
+
     ngOnInit() {
         this.restaurante = new Restaurante(
-            0,    
+            parseInt(this._routeParams.get("id")),    
             this._routeParams.get("nombre"), 
             this._routeParams.get("direccion"),
             this._routeParams.get("descripcion"),
             "null",
-            "bajo"
+            this._routeParams.get("precio")
         );
+        this.getRestaurante();
     }
 
     callPrecio(value) {
         this.restaurante.precio = value;
     }
+
+    getRestaurante() {
+        let id = this._routeParams.get("id");
+        this._restauranteService.getRestaurante(id)
+            .subscribe(
+                response => {
+                    this.restaurante = response.data;
+                    this.status = response.status;
+                    if (this.status !== "success") {
+                        this._router.navigate(["Home"]);
+                    }
+                }, 
+                error => {
+                    this.errorMessage = <any>error;
+                    if (this.errorMessage !== null) {
+                        console.log(this.errorMessage);
+                    }
+                }
+            );
+    }
+
 }
