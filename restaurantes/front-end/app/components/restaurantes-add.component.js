@@ -33,8 +33,27 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                     this._routeParams = _routeParams;
                     this._router = _router;
                 }
+                RestauranteAddComponent.prototype.onSubmit = function () {
+                    var _this = this;
+                    this._restauranteService.addRestaurante(this.restaurante)
+                        .subscribe(function (response) {
+                        _this.status = response.status;
+                        if (_this.status !== "success") {
+                            console.log("Error en el servidor");
+                        }
+                    }, function (error) {
+                        _this.errorMessage = error;
+                        if (_this.errorMessage !== null) {
+                            console.log(_this.errorMessage);
+                        }
+                    });
+                    this._router.navigate(["Home"]);
+                };
                 RestauranteAddComponent.prototype.ngOnInit = function () {
                     this.restaurante = new restaurante_1.Restaurante(0, this._routeParams.get("nombre"), this._routeParams.get("direccion"), this._routeParams.get("descripcion"), "null", "bajo");
+                };
+                RestauranteAddComponent.prototype.callPrecio = function (value) {
+                    this.restaurante.precio = value;
                 };
                 RestauranteAddComponent = __decorate([
                     core_1.Component({

@@ -1,6 +1,6 @@
 import { Injectable } from "angular2/core";
 import { Observable } from "rxjs/Observable";
-import { Http, Response } from "angular2/http";
+import { Http, Response, Headers } from "angular2/http";
 import { Restaurante } from "../model/restaurante";
 import "rxjs/add/operator/map";
 
@@ -18,6 +18,15 @@ export class RestauranteService {
     getRestaurante(id:string) {
         return this._http
             .get("http://localhost:8080/api/v1/restaurante/"+id)
+            .map(res => res.json());
+    }
+
+    addRestaurante(restaurante:Restaurante) {
+        delete restaurante.id;
+        let body = JSON.stringify(restaurante);
+        let headers = new Headers({"Content-Type":"application/json"});
+        return this._http
+            .post("http://localhost:8080/api/v1/restaurantes", body, {headers:headers})
             .map(res => res.json());
     }
 }

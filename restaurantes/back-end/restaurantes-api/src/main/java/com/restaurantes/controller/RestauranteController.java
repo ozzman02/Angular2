@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +33,12 @@ public class RestauranteController {
 	@GetMapping(value = "/restaurantes")
 	public ResponseEntity<?> getRestaurantes() {
 		return new ResponseEntity<>(new Response(restauranteService.getRestaurantes()), HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/restaurantes", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> saveRestaurante(@RequestBody Restaurante restaurante) {
+		return new ResponseEntity<>(new SingleResponse(
+				restauranteService.saveRestaurante(restaurante)), HttpStatus.CREATED);
 	}
 	
 	@GetMapping(value = "/restaurante/{id}")
