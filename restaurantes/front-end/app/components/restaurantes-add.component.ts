@@ -2,7 +2,6 @@ import { Component, OnInit } from "angular2/core";
 import { Router, RouteParams } from "angular2/router";
 import { RestauranteService } from "../services/restaurante.service";
 import { Restaurante } from "../model/restaurante";
-import { CONST_EXPR } from "angular2/src/facade/lang";
 
 @Component({
     selector: "restaurante-add",

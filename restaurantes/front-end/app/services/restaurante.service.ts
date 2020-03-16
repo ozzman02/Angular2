@@ -41,4 +41,10 @@ export class RestauranteService {
             .put("http://localhost:8080/api/v1/restaurantes", body, {headers:headers})
             .map(res => res.json());
     }
+
+    deleteRestaurante(id:string) {
+        return this._http
+            .delete("http://localhost:8080/api/v1/restaurante/"+id)
+            .map(res => res.json());
+    }
 }
