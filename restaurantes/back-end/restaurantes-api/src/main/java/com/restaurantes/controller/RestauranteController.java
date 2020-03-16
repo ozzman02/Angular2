@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restaurantes.dto.UpdateRestauranteDto;
 import com.restaurantes.exception.NotFoundException;
 import com.restaurantes.model.Restaurante;
 import com.restaurantes.response.ErrorResponse;
-import com.restaurantes.response.SuccessfulResponseList;
 import com.restaurantes.response.SuccessfulResponseItem;
+import com.restaurantes.response.SuccessfulResponseList;
 import com.restaurantes.service.RestauranteService;
 
 @RestController
@@ -42,10 +43,10 @@ public class RestauranteController {
 				restauranteService.saveRestaurante(restaurante)), HttpStatus.CREATED);
 	}
 	
-	@PutMapping(value = "/restaurantes/{id}", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<?> updateRestaurante(@RequestBody Restaurante restaurante, @PathVariable Integer id) {
+	@PutMapping(value = "/restaurantes", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> updateRestaurante(@RequestBody UpdateRestauranteDto updateRestauranteDto) {
 		return new ResponseEntity<>(new SuccessfulResponseItem(
-				restauranteService.updateRestaurante(id, restaurante)), HttpStatus.OK);
+				restauranteService.updateRestaurante(updateRestauranteDto)), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/restaurante/{id}")

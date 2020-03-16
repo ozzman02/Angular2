@@ -7,6 +7,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.restaurantes.dto.UpdateRestauranteDto;
 import com.restaurantes.model.Restaurante;
 import com.restaurantes.repository.RestauranteRepository;
 import com.restaurantes.service.RestauranteService;
@@ -50,11 +51,9 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Restaurante updateRestaurante(Integer idRestaurante, Restaurante restaurante) {
-		Restaurante nuevoRestaurante = restauranteRepository.findById(idRestaurante).get();
-		if (nuevoRestaurante != null) {
-			nuevoRestaurante = restaurante;
-		}
+	public Restaurante updateRestaurante(UpdateRestauranteDto updateRestauranteDto) {
+		Restaurante nuevoRestaurante = restauranteRepository.findById(updateRestauranteDto.getId()).get();
+		nuevoRestaurante = updateRestauranteDto.getRestaurante();
 		return restauranteRepository.save(nuevoRestaurante);
 	}
 
