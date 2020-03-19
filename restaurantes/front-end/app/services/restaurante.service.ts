@@ -13,15 +13,11 @@ export class RestauranteService {
     constructor(private _http:Http) {}
 
     getRestaurantes() {
-        return this._http
-            .get("http://localhost:8080/api/v1/restaurantes")
-            .map(res => res.json());
+        return this._http.get("http://localhost:8080/api/v1/restaurantes").map(res => res.json());
     }
 
     getRestaurante(id:string) {
-        return this._http
-            .get("http://localhost:8080/api/v1/restaurante/"+id)
-            .map(res => res.json());
+        return this._http.get("http://localhost:8080/api/v1/restaurante/"+id).map(res => res.json());
     }
 
     addRestaurante(restaurante:Restaurante) {
@@ -43,8 +39,6 @@ export class RestauranteService {
     }
 
     deleteRestaurante(id:string) {
-        return this._http
-            .delete("http://localhost:8080/api/v1/restaurante/"+id)
-            .map(res => res.json());
+        return this._http.delete("http://localhost:8080/api/v1/restaurante/"+id).map(res => res.json());
     }
 }
