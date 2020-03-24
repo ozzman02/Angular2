@@ -8,11 +8,11 @@ import com.restaurantes.model.Restaurante;
 
 public class RestauranteUtil {
 	
-	private static RestauranteDto convertRestauranteToRestauranteDto(Restaurante restaurante) {
+	public static RestauranteDto convertRestauranteToRestauranteDto(Restaurante restaurante) {
 		RestauranteDto restauranteDto = new RestauranteDto();
 		restauranteDto.setId(restaurante.getId());
 		restauranteDto.setDescripcion(restaurante.getDescripcion());
-		restauranteDto.setDireccion(restaurante.getDescripcion());
+		restauranteDto.setDireccion(restaurante.getDireccion());
 		restauranteDto.setNombre(restaurante.getNombre());
 		restauranteDto.setPrecio(restaurante.getPrecio());
 		restauranteDto.setImageId(restaurante.getImageModel().getId());

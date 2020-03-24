@@ -33,7 +33,7 @@ System.register(["angular2/core", "angular2/http", "../model/updateRestauranteDt
                     return this._http.get("http://localhost:8080/api/v1/restaurantes").map(function (res) { return res.json(); });
                 };
                 RestauranteService.prototype.getRestaurante = function (id) {
-                    return this._http.get("http://localhost:8080/api/v1/restaurante/" + id).map(function (res) { return res.json(); });
+                    return this._http.get("http://localhost:8080/api/v1/restaurantes/" + id).map(function (res) { return res.json(); });
                 };
                 RestauranteService.prototype.addRestaurante = function (restaurante) {
                     delete restaurante.id;
@@ -52,7 +52,7 @@ System.register(["angular2/core", "angular2/http", "../model/updateRestauranteDt
                         .map(function (res) { return res.json(); });
                 };
                 RestauranteService.prototype.deleteRestaurante = function (id) {
-                    return this._http.delete("http://localhost:8080/api/v1/restaurante/" + id).map(function (res) { return res.json(); });
+                    return this._http.delete("http://localhost:8080/api/v1/restaurantes/" + id).map(function (res) { return res.json(); });
                 };
                 RestauranteService = __decorate([
                     core_1.Injectable(), 

@@ -42,21 +42,27 @@ public class RestauranteController {
 	
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> saveRestaurante(@RequestBody Restaurante restaurante) {
-		return new ResponseEntity<>(new SuccessfulResponseItem(
-				restauranteService.saveRestaurante(restaurante)), HttpStatus.CREATED);
+		return new ResponseEntity<>(
+				new SuccessfulResponseItem(
+						RestauranteUtil.convertRestauranteToRestauranteDto(
+								restauranteService.saveRestaurante(restaurante))), HttpStatus.CREATED);
 	}
 	
 	@PutMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> updateRestaurante(@RequestBody UpdateRestauranteDto updateRestauranteDto) {
-		return new ResponseEntity<>(new SuccessfulResponseItem(
-				restauranteService.updateRestaurante(updateRestauranteDto)), HttpStatus.OK);
+		return new ResponseEntity<>(
+				new SuccessfulResponseItem(
+						RestauranteUtil.convertRestauranteToRestauranteDto(
+								restauranteService.updateRestaurante(updateRestauranteDto))), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> getRestaurante(@PathVariable Integer id) {
+	public ResponseEntity<?> getRestaurante(@PathVariable Integer id) {	
 		Restaurante restaurante = restauranteService.getRestaurante(id);
 		if (restaurante != null) {
-			return new ResponseEntity<>(new SuccessfulResponseItem(restaurante), HttpStatus.OK);
+			return new ResponseEntity<>(
+					new SuccessfulResponseItem(RestauranteUtil
+							.convertRestauranteToRestauranteDto(restaurante)), HttpStatus.OK);
 		} else {
 			String message = String.format("El restaurante con id %s no existe", id);
 			return new ResponseEntity<>(new ErrorResponse(new NotFoundException(message)), HttpStatus.OK);

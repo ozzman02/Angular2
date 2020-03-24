@@ -1,7 +1,6 @@
 package com.restaurantes.response;
 
-import com.restaurantes.model.Restaurante;
-
+import com.restaurantes.dto.RestauranteDto;
 import lombok.Data;
 
 @Data
@@ -9,9 +8,9 @@ public class SuccessfulResponseItem {
 	
 	private String status = "success";
 	
-	private Restaurante data;
+	private RestauranteDto data;
 	
-	public SuccessfulResponseItem(Restaurante data) {
+	public SuccessfulResponseItem(RestauranteDto data) {
 		this.data = data;
 	}
 	

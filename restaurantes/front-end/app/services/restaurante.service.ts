@@ -17,7 +17,7 @@ export class RestauranteService {
     }
 
     getRestaurante(id:string) {
-        return this._http.get("http://localhost:8080/api/v1/restaurante/"+id).map(res => res.json());
+        return this._http.get("http://localhost:8080/api/v1/restaurantes/"+id).map(res => res.json());
     }
 
     addRestaurante(restaurante:Restaurante) {
@@ -39,6 +39,6 @@ export class RestauranteService {
     }
 
     deleteRestaurante(id:string) {
-        return this._http.delete("http://localhost:8080/api/v1/restaurante/"+id).map(res => res.json());
+        return this._http.delete("http://localhost:8080/api/v1/restaurantes/"+id).map(res => res.json());
     }
 }
