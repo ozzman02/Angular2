@@ -5,8 +5,8 @@
     </li>
     <li *ngFor = "#restaurante of restaurantes" class="restaurante-item">
         <div class="image">
-            <img src="http://localhost:8080/uploads/{{restaurante.imagen}}" 
-                *ngIf="restaurante.imagen && restaurante.imagen !== 'null'" />
+            <img src="http://localhost:8080/api/v1/images/{{restaurante.imageId}}" 
+                *ngIf="restaurante.imageId && restaurante.imageId !== 'null'" />
         </div>
         <div class="data">
             <h4>{{restaurante.nombre}}</h4>
@@ -18,7 +18,7 @@
             </p>
             <div class="seguro" *ngIf="confirmado === restaurante.id">
                 <a (click)="onBorrarRestaurante(restaurante.id)" class="btn btn-eliminar">Eliminar</a>
-                <a (click)="onCancelarConfirm(restaurante.id)" class="btn btn-ver">Cancelar</a>
+                <a (click)="onCancelarConfirm()" class="btn btn-ver">Cancelar</a>
             </div>
         </div>
         <div class="clearfix"></div>

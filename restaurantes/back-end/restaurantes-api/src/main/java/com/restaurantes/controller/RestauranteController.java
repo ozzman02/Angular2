@@ -20,9 +20,10 @@ import com.restaurantes.response.ErrorResponse;
 import com.restaurantes.response.SuccessfulResponseItem;
 import com.restaurantes.response.SuccessfulResponseList;
 import com.restaurantes.service.RestauranteService;
+import com.restaurantes.util.RestauranteUtil;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/restaurantes")
 @CrossOrigin
 public class RestauranteController {
 
@@ -33,24 +34,25 @@ public class RestauranteController {
 		this.restauranteService = restauranteService;
 	}
 	
-	@GetMapping(value = "/restaurantes")
+	@GetMapping
 	public ResponseEntity<?> getRestaurantes() {
-		return new ResponseEntity<>(new SuccessfulResponseList(restauranteService.getRestaurantes()), HttpStatus.OK);
+		return new ResponseEntity<>(new SuccessfulResponseList(RestauranteUtil.convertRestauranteList
+				(restauranteService.getRestaurantes())), HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/restaurantes", consumes = "application/json", produces = "application/json")
+	@PostMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> saveRestaurante(@RequestBody Restaurante restaurante) {
 		return new ResponseEntity<>(new SuccessfulResponseItem(
 				restauranteService.saveRestaurante(restaurante)), HttpStatus.CREATED);
 	}
 	
-	@PutMapping(value = "/restaurantes", consumes = "application/json", produces = "application/json")
+	@PutMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> updateRestaurante(@RequestBody UpdateRestauranteDto updateRestauranteDto) {
 		return new ResponseEntity<>(new SuccessfulResponseItem(
 				restauranteService.updateRestaurante(updateRestauranteDto)), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/restaurante/{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> getRestaurante(@PathVariable Integer id) {
 		Restaurante restaurante = restauranteService.getRestaurante(id);
 		if (restaurante != null) {
@@ -61,7 +63,7 @@ public class RestauranteController {
 		}
 	}
 	
-	@DeleteMapping(value = "/restaurante/{id}")
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> deleteRestaurante(@PathVariable Integer id) {
 		restauranteService.deleteRestaurante(id);
 		return new ResponseEntity<>(new SuccessfulResponseItem(null), HttpStatus.OK);

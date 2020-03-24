@@ -39,6 +39,7 @@ System.register(["angular2/core", "../services/restaurante.service", "angular2/r
                         .subscribe(function (result) {
                         _this.restaurantes = result.data;
                         _this.status = result.status;
+                        console.log(_this.restaurantes);
                         if (_this.status !== "success") {
                             console.log("Error en el servidor");
                         }
@@ -69,7 +70,7 @@ System.register(["angular2/core", "../services/restaurante.service", "angular2/r
                 RestaurantesListComponent.prototype.onBorrarConfirm = function (id) {
                     this.confirmado = id;
                 };
-                RestaurantesListComponent.prototype.onCancelarConfirm = function (id) {
+                RestaurantesListComponent.prototype.onCancelarConfirm = function () {
                     this.confirmado = null;
                 };
                 RestaurantesListComponent = __decorate([

@@ -56,6 +56,17 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                 RestauranteAddComponent.prototype.callPrecio = function (value) {
                     this.restaurante.precio = value;
                 };
+                RestauranteAddComponent.prototype.fileChangeEvent = function (fileInput) {
+                    var _this = this;
+                    this.filesToUpload = fileInput.target.files;
+                    var url = "http://localhost:8080/api/v1/restaurante/upload-file/";
+                    this.makeFileRequest(url, [], this.filesToUpload).then(function (result) {
+                        _this.resultUpload = result;
+                        _this.restaurante.imagen = _this.resultUpload.filename;
+                    }, function (error) {
+                        console.log(error);
+                    });
+                };
                 RestauranteAddComponent.prototype.makeFileRequest = function (url, params, files) {
                     return new Promise(function (resolve, reject) {
                         var formData = new FormData();
@@ -75,17 +86,6 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                         };
                         xhr.open("POST", url, true);
                         xhr.send(formData);
-                    });
-                };
-                RestauranteAddComponent.prototype.fileChangeEvent = function (fileInput) {
-                    var _this = this;
-                    this.filesToUpload = fileInput.target.files;
-                    var url = "http://localhost:8080/api/v1/restaurante/upload-file/";
-                    this.makeFileRequest(url, [], this.filesToUpload).then(function (result) {
-                        _this.restaurante.imagen = result.filename;
-                        console.log(result.filename);
-                    }, function (error) {
-                        console.log(error);
                     });
                 };
                 RestauranteAddComponent = __decorate([
