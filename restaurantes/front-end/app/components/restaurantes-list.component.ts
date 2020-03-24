@@ -32,7 +32,6 @@ export class RestaurantesListComponent implements OnInit {
                 result => {
                     this.restaurantes = result.data;
                     this.status = result.status;
-                    console.log(this.restaurantes);
                     if (this.status !== "success") {
                         console.log("Error en el servidor");
                     }

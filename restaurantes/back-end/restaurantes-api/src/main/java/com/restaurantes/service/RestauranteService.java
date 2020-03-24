@@ -2,7 +2,7 @@ package com.restaurantes.service;
 
 import java.util.List;
 
-import com.restaurantes.dto.UpdateRestauranteDto;
+import com.restaurantes.dto.RestauranteDto;
 import com.restaurantes.model.Restaurante;
 
 public interface RestauranteService {
@@ -15,7 +15,7 @@ public interface RestauranteService {
 	
 	Restaurante saveRestaurante(Restaurante restaurante);
 	
-	Restaurante updateRestaurante(UpdateRestauranteDto updateRestauranteDto);
+	Restaurante updateRestaurante(RestauranteDto restauranteDto);
 	
 	void deleteRestaurante(Integer idRestaurante);
 	

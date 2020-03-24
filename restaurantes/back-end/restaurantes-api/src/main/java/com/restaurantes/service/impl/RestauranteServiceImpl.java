@@ -7,7 +7,8 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.restaurantes.dto.UpdateRestauranteDto;
+import com.restaurantes.converters.RestauranteDtoToRestaurante;
+import com.restaurantes.dto.RestauranteDto;
 import com.restaurantes.model.Restaurante;
 import com.restaurantes.repository.RestauranteRepository;
 import com.restaurantes.service.RestauranteService;
@@ -17,9 +18,13 @@ public class RestauranteServiceImpl implements RestauranteService {
 
 	private RestauranteRepository restauranteRepository;
 	
+	private RestauranteDtoToRestaurante restauranteDtoConverter;
+	
 	@Autowired
-	public RestauranteServiceImpl(RestauranteRepository restauranteRepository) {
+	public RestauranteServiceImpl(RestauranteRepository restauranteRepository,
+			RestauranteDtoToRestaurante restauranteDtoConverter) {
 		this.restauranteRepository = restauranteRepository;
+		this.restauranteDtoConverter = restauranteDtoConverter;
 	}
 	
 	@Override
@@ -51,9 +56,10 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Restaurante updateRestaurante(UpdateRestauranteDto updateRestauranteDto) {
-		Restaurante nuevoRestaurante = restauranteRepository.findById(updateRestauranteDto.getId()).get();
-		nuevoRestaurante = updateRestauranteDto.getRestaurante();
+	public Restaurante updateRestaurante(RestauranteDto restauranteDto) {
+		Restaurante restauranteModificado = restauranteDtoConverter.convert(restauranteDto);
+		Restaurante nuevoRestaurante = restauranteRepository.findById(restauranteDto.getId()).get();
+		nuevoRestaurante = restauranteModificado;
 		return restauranteRepository.save(nuevoRestaurante);
 	}
 

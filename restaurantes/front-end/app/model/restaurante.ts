@@ -5,7 +5,7 @@ export class Restaurante {
         public nombre:string,
         public direccion:string,
         public descripcion:string,
-        public imagen:string,
+        public imagenId:number,
         public precio:string
     ) {}
 

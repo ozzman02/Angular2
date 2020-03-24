@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/http", "../model/updateRestauranteDto", "rxjs/add/operator/map"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/http", "rxjs/add/operator/map"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "angular2/http", "../model/updateRestauranteDt
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, updateRestauranteDto_1;
+    var core_1, http_1;
     var RestauranteService;
     return {
         setters:[
@@ -19,9 +19,6 @@ System.register(["angular2/core", "angular2/http", "../model/updateRestauranteDt
             },
             function (http_1_1) {
                 http_1 = http_1_1;
-            },
-            function (updateRestauranteDto_1_1) {
-                updateRestauranteDto_1 = updateRestauranteDto_1_1;
             },
             function (_1) {}],
         execute: function() {
@@ -44,8 +41,8 @@ System.register(["angular2/core", "angular2/http", "../model/updateRestauranteDt
                         .map(function (res) { return res.json(); });
                 };
                 RestauranteService.prototype.editRestaurante = function (id, restaurante) {
-                    this.updateRestauranteDto = new updateRestauranteDto_1.UpdateRestauranteDto(parseInt(id), restaurante);
-                    var body = JSON.stringify(this.updateRestauranteDto);
+                    console.log(restaurante);
+                    var body = JSON.stringify(restaurante);
                     var headers = new http_1.Headers({ "Content-Type": "application/json" });
                     return this._http
                         .put("http://localhost:8080/api/v1/restaurantes", body, { headers: headers })

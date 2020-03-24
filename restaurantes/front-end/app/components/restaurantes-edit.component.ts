@@ -17,6 +17,7 @@ export class RestauranteEditComponent implements OnInit {
     public status:string;
     public filesToUpload:Array<File>;
     public resultUpload;
+    public selectedFile:File;
 
     constructor(
         private _restauranteService:RestauranteService,
@@ -26,6 +27,7 @@ export class RestauranteEditComponent implements OnInit {
 
     onSubmit() {
         let id = this._routeParams.get("id");
+        console.log("Restaurante modificado: " + this.restaurante);
         this._restauranteService.editRestaurante(id, this.restaurante)
             .subscribe(
                 response => {
@@ -50,7 +52,7 @@ export class RestauranteEditComponent implements OnInit {
             this._routeParams.get("nombre"), 
             this._routeParams.get("direccion"),
             this._routeParams.get("descripcion"),
-            "null",
+            parseInt(this._routeParams.get("imagenId")),
             this._routeParams.get("precio")
         );
         this.getRestaurante();
@@ -80,26 +82,25 @@ export class RestauranteEditComponent implements OnInit {
             );
     }
 
-    fileChangeEvent(fileInput:any) {
-        this.filesToUpload = <Array<File>>fileInput.target.files;
-        let url = "http://localhost:8080/api/v1/restaurante/upload-file/";
-        this.makeFileRequest(url, [], this.filesToUpload).then( 
+    fileChangeEvent(event) {
+        let url = "http://localhost:8080/api/v1/images/upload";
+        this.selectedFile = event.target.files[0];
+        this.makeFileRequest(url, []).then(
             (result) => {
                 this.resultUpload = result;
-                this.restaurante.imagen = this.resultUpload.filename;
+                this.restaurante.imagenId = this.resultUpload;
             }, 
             (error) => {
-                console.log(error);
-            })
-    }
-    
-    makeFileRequest(url:string, params:Array<string>, files:Array<File>) {
-        return new Promise((resolve, reject) => {
-            var formData: any = new FormData();
-            var xhr = new XMLHttpRequest();
-            for (var i = 0; i < files.length; i++) {
-                formData.append("uploads[]", files[i], files[i].name);
+                console.log("Error:" + error);
             }
+        );
+    } 
+
+    makeFileRequest(url:string, params:Array<string>) {
+        return new Promise((resolve, reject) => {
+            const uploadImageData = new FormData();
+            const xhr = new XMLHttpRequest();
+            uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
@@ -110,8 +111,8 @@ export class RestauranteEditComponent implements OnInit {
                 }
             }
             xhr.open("POST", url, true);
-            xhr.send(formData);
+            xhr.send(uploadImageData);
         });
     }
-
+        
 }

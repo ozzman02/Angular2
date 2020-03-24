@@ -9,5 +9,5 @@ public class RestauranteDto {
 	private String descripcion;
 	private String direccion;
 	private String precio;
-	private Long imageId;
+	private Long imagenId;
 }
