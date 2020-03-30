@@ -1,6 +1,5 @@
 package com.restaurantes.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,8 +36,8 @@ public class Restaurante {
 	@Column(name = "precio")
 	private String precio;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "image_id", referencedColumnName = "id")
+	@OneToOne
+	@JoinColumn(name = "image_id")
 	private ImageModel imageModel;
 	
 }

@@ -18,7 +18,7 @@
             </p>
             <div class="seguro" *ngIf="confirmado === restaurante.id">
                 <a (click)="onBorrarRestaurante(restaurante.id)" class="btn btn-eliminar">Eliminar</a>
-                <a (click)="onCancelarConfirm()" class="btn btn-ver">Cancelar</a>
+                <a (click)="onCancelarConfirm(restaurante.id)" class="btn btn-ver">Cancelar</a>
             </div>
         </div>
         <div class="clearfix"></div>

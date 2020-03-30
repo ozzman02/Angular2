@@ -5,6 +5,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.restaurantes.dto.RestauranteDto;
+import com.restaurantes.model.ImageModel;
 import com.restaurantes.model.Restaurante;
 import com.restaurantes.service.ImageService;
 
@@ -12,6 +13,11 @@ import com.restaurantes.service.ImageService;
 public class RestauranteDtoToRestaurante implements Converter<RestauranteDto, Restaurante> {
 	
 	private ImageService imageService;
+	
+	private ImageModel getImageModel(Long imageId) {
+		if (imageId == null) return null;
+		return imageService.findById(imageId);
+	}
 	
 	@Autowired
 	public RestauranteDtoToRestaurante(ImageService imageService) {
@@ -27,8 +33,10 @@ public class RestauranteDtoToRestaurante implements Converter<RestauranteDto, Re
 		 restaurante.setDireccion(source.getDireccion());
 		 restaurante.setNombre(source.getNombre());
 		 restaurante.setPrecio(source.getPrecio());
-		 restaurante.setImageModel(imageService.findById(source.getImagenId()));
+		 restaurante.setImageModel(getImageModel(source.getImagenId()));
 		 return restaurante;
 	}
+	
+	
 	
 }

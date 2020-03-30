@@ -51,8 +51,16 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Restaurante saveRestaurante(Restaurante restaurante) {
+	public Restaurante saveRestaurante(RestauranteDto restauranteDto) {
+		
+		Restaurante restaurante = restauranteDtoConverter.convert(restauranteDto);
+		
+		System.out.println(restaurante);
+		
 		return restauranteRepository.save(restaurante);
+		
+		//restauranteDtoConverter.convert(restauranteDto)
+		//return null;
 	}
 
 	@Override

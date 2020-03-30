@@ -13,7 +13,7 @@ public interface RestauranteService {
 	
 	Restaurante getAnyRestaurante();
 	
-	Restaurante saveRestaurante(Restaurante restaurante);
+	Restaurante saveRestaurante(RestauranteDto restauranteDto);
 	
 	Restaurante updateRestaurante(RestauranteDto restauranteDto);
 	

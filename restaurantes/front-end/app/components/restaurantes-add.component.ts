@@ -26,6 +26,7 @@ export class RestauranteAddComponent implements OnInit {
     ) {}
 
     onSubmit() {
+        console.log(this.restaurante);
         this._restauranteService.addRestaurante(this.restaurante)
             .subscribe(
                 response => {

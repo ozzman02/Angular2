@@ -47,14 +47,14 @@ public class RestauranteController {
 	public ResponseEntity<?> getRestaurantes() {
 		return new ResponseEntity<>(new SuccessfulResponseList(
 				restauranteDtoConverter.convertRestauranteList(
-						restauranteService.getRestaurantes())), HttpStatus.OK);
+						restauranteService.getRestaurantes())), HttpStatus.OK);	
 	}
 	
 	@PostMapping(consumes = "application/json", produces = "application/json")
-	public ResponseEntity<?> saveRestaurante(@RequestBody Restaurante restaurante) {
-		return new ResponseEntity<>(new SuccessfulResponseItem(
-				restauranteDtoConverter.convert(
-						restauranteService.saveRestaurante(restaurante))), HttpStatus.CREATED);
+	public ResponseEntity<?> saveRestaurante(@RequestBody RestauranteDto restauranteDto) {
+		return new ResponseEntity<>(
+				new SuccessfulResponseItem(restauranteDtoConverter.convert(
+						restauranteService.saveRestaurante(restauranteDto))), HttpStatus.CREATED);
 	}
 	
 	@PutMapping(consumes = "application/json", produces = "application/json")

@@ -67,10 +67,19 @@ public class RestaurantesAppBootstrap implements ApplicationListener<ContextRefr
 		restaurante4.setPrecio("normal");
 		restaurante4.setImageModel(imageRepository.findByName("wilk.png"));
 		
+		Restaurante restaurante5 = new Restaurante();
+		restaurante5.setId(5);
+		restaurante5.setNombre("Test");
+		restaurante5.setDescripcion("Test");
+		restaurante5.setDireccion("Test");
+		restaurante5.setPrecio("bajo");
+		restaurante5.setImageModel(null);
+		
 		restaurantes.add(restaurante1);
 		restaurantes.add(restaurante2);
 		restaurantes.add(restaurante3);
 		restaurantes.add(restaurante4);
+		restaurantes.add(restaurante5);
 		
 		restauranteRepository.saveAll(restaurantes);
 		

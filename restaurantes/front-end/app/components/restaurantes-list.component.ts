@@ -69,7 +69,7 @@ export class RestaurantesListComponent implements OnInit {
         this.confirmado = id;
     }
 
-    onCancelarConfirm() {
+    onCancelarConfirm(id) {
         this.confirmado = null;
     }
 

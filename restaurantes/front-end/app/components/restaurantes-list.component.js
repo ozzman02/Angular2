@@ -69,7 +69,7 @@ System.register(["angular2/core", "../services/restaurante.service", "angular2/r
                 RestaurantesListComponent.prototype.onBorrarConfirm = function (id) {
                     this.confirmado = id;
                 };
-                RestaurantesListComponent.prototype.onCancelarConfirm = function () {
+                RestaurantesListComponent.prototype.onCancelarConfirm = function (id) {
                     this.confirmado = null;
                 };
                 RestaurantesListComponent = __decorate([

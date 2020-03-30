@@ -2,13 +2,10 @@ import { Injectable } from "angular2/core";
 import { Observable } from "rxjs/Observable";
 import { Http, Response, Headers } from "angular2/http";
 import { Restaurante } from "../model/restaurante";
-import { UpdateRestauranteDto } from "../model/updateRestauranteDto";
 import "rxjs/add/operator/map";
 
 @Injectable() 
 export class RestauranteService {
-
-    private updateRestauranteDto:UpdateRestauranteDto;
 
     constructor(private _http:Http) {}
 

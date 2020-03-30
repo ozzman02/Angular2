@@ -14,14 +14,22 @@ public class RestauranteToRestauranteDto implements Converter<Restaurante, Resta
 
 	@Override
 	public RestauranteDto convert(Restaurante source) {
+		
 		if (source == null) return null;
+		
 		RestauranteDto restauranteDto = new RestauranteDto();
 		restauranteDto.setId(source.getId());
 		restauranteDto.setDescripcion(source.getDescripcion());
 		restauranteDto.setDireccion(source.getDireccion());
 		restauranteDto.setNombre(source.getNombre());
 		restauranteDto.setPrecio(source.getPrecio());
-		restauranteDto.setImagenId(source.getImageModel().getId());
+		
+		if (source.getImageModel() != null) {
+			restauranteDto.setImagenId(source.getImageModel().getId());
+		} else {
+			restauranteDto.setImagenId(null);
+		}
+		
 		return restauranteDto;
 	}
 	

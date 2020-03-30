@@ -36,6 +36,7 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                 }
                 RestauranteAddComponent.prototype.onSubmit = function () {
                     var _this = this;
+                    console.log(this.restaurante);
                     this._restauranteService.addRestaurante(this.restaurante)
                         .subscribe(function (response) {
                         _this.status = response.status;
