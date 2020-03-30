@@ -19,7 +19,7 @@ export class RestauranteService {
         if (random == null) {
             return this._http.get(this.url+"/"+id).map(res => res.json());
         } else {
-            return this._http.get(this.url+"/random").map(res => res.json());
+            return this._http.get(`${this.url}/random`).map(res => res.json());
         }
     }
 
