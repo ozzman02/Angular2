@@ -25,19 +25,26 @@ System.register(["angular2/core", "angular2/http", "rxjs/add/operator/map"], fun
             RestauranteService = (function () {
                 function RestauranteService(_http) {
                     this._http = _http;
+                    this.url = "http://localhost:8080/api/v1/restaurantes";
                 }
                 RestauranteService.prototype.getRestaurantes = function () {
-                    return this._http.get("http://localhost:8080/api/v1/restaurantes").map(function (res) { return res.json(); });
+                    return this._http.get(this.url).map(function (res) { return res.json(); });
                 };
-                RestauranteService.prototype.getRestaurante = function (id) {
-                    return this._http.get("http://localhost:8080/api/v1/restaurantes/" + id).map(function (res) { return res.json(); });
+                RestauranteService.prototype.getRestaurante = function (id, random) {
+                    if (random === void 0) { random = null; }
+                    if (random == null) {
+                        return this._http.get(this.url + "/" + id).map(function (res) { return res.json(); });
+                    }
+                    else {
+                        return this._http.get(this.url + "/random").map(function (res) { return res.json(); });
+                    }
                 };
                 RestauranteService.prototype.addRestaurante = function (restaurante) {
                     delete restaurante.id;
                     var body = JSON.stringify(restaurante);
                     var headers = new http_1.Headers({ "Content-Type": "application/json" });
                     return this._http
-                        .post("http://localhost:8080/api/v1/restaurantes", body, { headers: headers })
+                        .post(this.url, body, { headers: headers })
                         .map(function (res) { return res.json(); });
                 };
                 RestauranteService.prototype.editRestaurante = function (id, restaurante) {
@@ -45,11 +52,11 @@ System.register(["angular2/core", "angular2/http", "rxjs/add/operator/map"], fun
                     var body = JSON.stringify(restaurante);
                     var headers = new http_1.Headers({ "Content-Type": "application/json" });
                     return this._http
-                        .put("http://localhost:8080/api/v1/restaurantes", body, { headers: headers })
+                        .put(this.url, body, { headers: headers })
                         .map(function (res) { return res.json(); });
                 };
                 RestauranteService.prototype.deleteRestaurante = function (id) {
-                    return this._http.delete("http://localhost:8080/api/v1/restaurantes/" + id).map(function (res) { return res.json(); });
+                    return this._http.delete(this.url + "/" + id).map(function (res) { return res.json(); });
                 };
                 RestauranteService = __decorate([
                     core_1.Injectable(), 

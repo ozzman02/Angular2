@@ -11,7 +11,7 @@ public interface RestauranteService {
 	
 	Restaurante getRestaurante(Integer idRestaurante);
 	
-	Restaurante getAnyRestaurante();
+	RestauranteDto getAnyRestaurante();
 	
 	Restaurante saveRestaurante(RestauranteDto restauranteDto);
 	

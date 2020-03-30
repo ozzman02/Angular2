@@ -76,6 +76,12 @@ public class RestauranteController {
 		}
 	}
 	
+	@GetMapping(value = "/random")
+	public ResponseEntity<?> getAnyRestaurante() {
+		return new ResponseEntity<>(new SuccessfulResponseItem(restauranteService.getAnyRestaurante()), HttpStatus.OK);
+	}
+	
+	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> deleteRestaurante(@PathVariable Integer id) {
 		restauranteService.deleteRestaurante(id);

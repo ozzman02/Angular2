@@ -9,12 +9,18 @@ export class RestauranteService {
 
     constructor(private _http:Http) {}
 
+    private url = "http://localhost:8080/api/v1/restaurantes";
+
     getRestaurantes() {
-        return this._http.get("http://localhost:8080/api/v1/restaurantes").map(res => res.json());
+        return this._http.get(this.url).map(res => res.json());
     }
 
-    getRestaurante(id:string) {
-        return this._http.get("http://localhost:8080/api/v1/restaurantes/"+id).map(res => res.json());
+    getRestaurante(id:string, random = null) {
+        if (random == null) {
+            return this._http.get(this.url+"/"+id).map(res => res.json());
+        } else {
+            return this._http.get(this.url+"/random").map(res => res.json());
+        }
     }
 
     addRestaurante(restaurante:Restaurante) {
@@ -22,7 +28,7 @@ export class RestauranteService {
         let body = JSON.stringify(restaurante);
         let headers = new Headers({"Content-Type":"application/json"});
         return this._http
-            .post("http://localhost:8080/api/v1/restaurantes", body, {headers:headers})
+            .post(this.url, body, {headers:headers})
             .map(res => res.json());
     }
 
@@ -31,11 +37,11 @@ export class RestauranteService {
         let body = JSON.stringify(restaurante);
         let headers = new Headers({"Content-Type":"application/json"});
         return this._http
-            .put("http://localhost:8080/api/v1/restaurantes", body, {headers:headers})
+            .put(this.url, body, {headers:headers})
             .map(res => res.json());
     }
 
     deleteRestaurante(id:string) {
-        return this._http.delete("http://localhost:8080/api/v1/restaurantes/"+id).map(res => res.json());
+        return this._http.delete(this.url+"/"+id).map(res => res.json());
     }
 }

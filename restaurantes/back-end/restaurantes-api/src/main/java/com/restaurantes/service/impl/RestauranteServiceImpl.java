@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.restaurantes.converters.RestauranteDtoToRestaurante;
+import com.restaurantes.converters.RestauranteToRestauranteDto;
 import com.restaurantes.dto.RestauranteDto;
 import com.restaurantes.model.Restaurante;
 import com.restaurantes.repository.RestauranteRepository;
@@ -20,11 +21,14 @@ public class RestauranteServiceImpl implements RestauranteService {
 	
 	private RestauranteDtoToRestaurante restauranteDtoConverter;
 	
+	private RestauranteToRestauranteDto restauranteConverter;
+	
 	@Autowired
 	public RestauranteServiceImpl(RestauranteRepository restauranteRepository,
-			RestauranteDtoToRestaurante restauranteDtoConverter) {
+			RestauranteDtoToRestaurante restauranteDtoConverter, RestauranteToRestauranteDto restauranteConverter) {
 		this.restauranteRepository = restauranteRepository;
 		this.restauranteDtoConverter = restauranteDtoConverter;
+		this.restauranteConverter = restauranteConverter;
 	}
 	
 	@Override
@@ -43,24 +47,16 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Restaurante getAnyRestaurante() {
+	public RestauranteDto getAnyRestaurante() {
 		List<Restaurante> restauranteList = (List<Restaurante>) restauranteRepository.findAll();
 		Random rand = new Random();
 		Restaurante restaurante = restauranteList.get(rand.nextInt(restauranteList.size()));
-		return restaurante;
+		return restauranteConverter.convert(restaurante);
 	}
 
 	@Override
 	public Restaurante saveRestaurante(RestauranteDto restauranteDto) {
-		
-		Restaurante restaurante = restauranteDtoConverter.convert(restauranteDto);
-		
-		System.out.println(restaurante);
-		
-		return restauranteRepository.save(restaurante);
-		
-		//restauranteDtoConverter.convert(restauranteDto)
-		//return null;
+		return restauranteRepository.save(restauranteDtoConverter.convert(restauranteDto));
 	}
 
 	@Override
