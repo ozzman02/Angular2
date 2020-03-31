@@ -8,15 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
+var router_deprecated_1 = require("@angular/router-deprecated");
+var restaurantes_list_component_1 = require("./components/restaurantes-list.component");
+var restaurantes_detail_component_1 = require("./components/restaurantes-detail.component");
+var restaurantes_add_component_1 = require("./components/restaurantes-add.component");
+var restaurantes_edit_component_1 = require("./components/restaurantes-edit.component");
 var AppComponent = (function () {
     function AppComponent() {
+        this.titulo = "Restaurantes";
     }
     AppComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: '<h1>Hola mundo con Angular 2 !! </h1>'
-        }), 
+            selector: "mi-app",
+            templateUrl: "app/view/home.html",
+            directives: [
+                restaurantes_list_component_1.RestaurantesListComponent,
+                router_deprecated_1.ROUTER_DIRECTIVES
+            ]
+        }),
+        router_deprecated_1.RouteConfig([
+            { path: '/', name: "Home", component: restaurantes_list_component_1.RestaurantesListComponent, useAsDefault: true },
+            { path: '/restaurante/:id', name: "Restaurante", component: restaurantes_detail_component_1.RestaurantesDetailComponent },
+            { path: '/crear-restaurante/', name: "CrearRestaurante", component: restaurantes_add_component_1.RestauranteAddComponent },
+            { path: '/editar-restaurante/:id', name: "EditarRestaurante", component: restaurantes_edit_component_1.RestauranteEditComponent },
+            { path: '/donde-como-hoy/:random', name: "DondeComoHoy", component: restaurantes_detail_component_1.RestaurantesDetailComponent },
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
