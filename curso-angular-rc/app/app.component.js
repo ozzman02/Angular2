@@ -14,9 +14,11 @@ var restaurantes_list_component_1 = require("./components/restaurantes-list.comp
 var restaurantes_detail_component_1 = require("./components/restaurantes-detail.component");
 var restaurantes_add_component_1 = require("./components/restaurantes-add.component");
 var restaurantes_edit_component_1 = require("./components/restaurantes-edit.component");
+var pruebas_pipe_1 = require("./pipes/pruebas.pipe");
 var AppComponent = (function () {
     function AppComponent() {
         this.titulo = "Restaurantes";
+        this.fecha = new Date(1990, 6, 27);
     }
     AppComponent = __decorate([
         core_1.Component({
@@ -25,7 +27,8 @@ var AppComponent = (function () {
             directives: [
                 restaurantes_list_component_1.RestaurantesListComponent,
                 router_deprecated_1.ROUTER_DIRECTIVES
-            ]
+            ],
+            pipes: [pruebas_pipe_1.PruebasPipes]
         }),
         router_deprecated_1.RouteConfig([
             { path: '/', name: "Home", component: restaurantes_list_component_1.RestaurantesListComponent, useAsDefault: true },

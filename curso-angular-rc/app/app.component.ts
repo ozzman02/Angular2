@@ -4,6 +4,7 @@ import { RestaurantesListComponent } from "./components/restaurantes-list.compon
 import { RestaurantesDetailComponent } from "./components/restaurantes-detail.component";
 import { RestauranteAddComponent } from "./components/restaurantes-add.component";
 import { RestauranteEditComponent } from "./components/restaurantes-edit.component";
+import { PruebasPipes } from "./pipes/pruebas.pipe";
 
 @Component({
     selector: "mi-app",
@@ -11,7 +12,8 @@ import { RestauranteEditComponent } from "./components/restaurantes-edit.compone
     directives: [
         RestaurantesListComponent,
         ROUTER_DIRECTIVES
-    ]
+    ],
+    pipes: [PruebasPipes]
 }) 
 
 @RouteConfig([
@@ -24,4 +26,5 @@ import { RestauranteEditComponent } from "./components/restaurantes-edit.compone
 
 export class AppComponent {
     public titulo:string = "Restaurantes";
+    public fecha = new Date(1990, 6, 27);
 }
